@@ -3,18 +3,20 @@ import { Actividad } from '../interfaces/actividad.interface';
 import { Fase } from '../interfaces/fase.interface';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ProgresoRadialComponent } from '../../progreso-radial/progreso-radial.component';
 
 @Component({
   selector: 'app-fase',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ProgresoRadialComponent ],
   templateUrl: './fase.component.html',
   styleUrl: './fase.component.css'
 })
 export class FaseComponent {
   @Input() fase!: Fase;
   @Output() faseActualizada = new EventEmitter<Fase>();
+
   ngOnInit() {
-    // 👌 Al entrar al componente ya calcula porcentajes
+    //Al entrar al componente ya calcula porcentajes
     this.recalcularFase();
   }
 
@@ -34,24 +36,20 @@ export class FaseComponent {
   }
 
   agregarActividad() {
-    const nueva: Actividad = {
-      id: Date.now(),
-      nombre: 'Nueva actividad',
-      unidad: 'ha',
-      costo: 0,
-      activa: true,
-      completada: false
-    };
+  const nueva: Actividad = {
+    id: Date.now(),
+    nombre: '',
+    unidad: 'ha',
+    costo: 0,
+    activa: true,
+    completada: false,
+    esNueva: true
+  };
 
-    // Agregar la nueva actividad a la fase
-    this.fase.actividades.push(nueva);
+  this.fase.actividades.push(nueva);
+}
 
-    // Recalcular la fase después de agregar la actividad
-    this.recalcularFase();
 
-    // Emitir los cambios
-    this.faseActualizada.emit(this.fase);
-  }
 
   private recalcularFase() {
   const actividades = this.fase.actividades;
@@ -102,6 +100,31 @@ calcularProgreso() {
 
     this.fase.progreso = Math.round((completadas.length / activas.length) * 100);
   }
+
+  confirmarNombre(actividad: Actividad) {
+  if (!actividad.nombre || actividad.nombre.trim() === '') {
+    actividad.nombre = 'Actividad nueva';
+  }
+
+  actividad.editando = false;
+  this.actualizarActividad();
+}
+
+editarNombre(actividad: Actividad) {
+  actividad.editando = true;
+}
+confirmarNuevaActividad(actividad: Actividad) {
+  if (!actividad.nombre || actividad.nombre.trim() === '') {
+    actividad.nombre = 'Actividad sin nombre';
+  }
+
+  actividad.esNueva = false;
+
+  // ✅ AHORA sí recalcula
+  this.recalcularFase();
+}
+
+
 
 
 }

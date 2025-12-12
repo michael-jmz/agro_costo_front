@@ -1,68 +1,93 @@
+/* ------------------------------
+   CARD PRINCIPAL DE LA FASE
+------------------------------ */
 .fase-card {
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 1.1rem;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
 }
 
+/* ------------------------------
+   HEADER DE LA FASE
+------------------------------ */
 .fase-header {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
-  margin-bottom: 1rem;
+  gap: 0.9rem;
+  margin-bottom: 0.7rem;
 }
 
+/* CÍRCULO DE PROGRESO */
 .progreso-circular {
-  width: 70px;
-  height: 70px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  border: 6px solid #0A5EA8;
+  border: 4px solid #0A5EA8;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
-  font-size: 1.2rem;
+  font-weight: 600;
+  font-size: 0.85rem;
   color: #0A5EA8;
 }
 
+/* SUBTÍTULO */
 .subtitulo {
   color: #666;
+  font-size: 0.8rem;
 }
 
+/* ------------------------------
+   LISTADO DE ACTIVIDADES
+------------------------------ */
 .actividades {
   display: flex;
   flex-direction: column;
-  gap: .8rem;
+  gap: 0.5rem;
 }
 
+/* ACTIVIDAD INDIVIDUAL */
 .actividad {
   display: grid;
-  grid-template-columns: 40px 30px auto 100px 20px 40px;
+  grid-template-columns: 36px 26px auto 80px 18px 28px;
   align-items: center;
-  gap: .5rem;
-  padding: .6rem;
-  border-radius: 8px;
-  transition: background .25s ease;
+  gap: 0.4rem;
+  padding: 0.45rem;
+  border-radius: 6px;
+  transition: background 0.2s ease;
 }
 
 .actividad:hover {
   background: #F4F8FF;
 }
 
+/* NOMBRE DE LA ACTIVIDAD */
 .nombre {
   font-weight: 500;
+  font-size: 0.85rem;
 }
 
+/* PORCENTAJE */
+.porcentaje-actividad {
+  font-size: 0.7rem;
+  color: #666;
+  margin-left: 6px;
+}
+
+/* INPUT COSTO */
 .input-costo {
-  padding: .3rem .4rem;
-  width: 90px;
+  padding: 0.2rem 0.35rem;
+  width: 70px;
+  font-size: 0.8rem;
 }
 
+/* BOTÓN ELIMINAR */
 .eliminar {
   background: transparent;
   border: none;
   color: #c00;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   cursor: pointer;
 }
 
@@ -70,64 +95,133 @@
   color: #ff0000;
 }
 
+/* ------------------------------
+   BOTÓN AGREGAR ACTIVIDAD
+------------------------------ */
 .btn-agregar {
-  margin-top: 1rem;
+  margin-top: 0.75rem;
   background: #0A5EA8;
   color: white;
   border: none;
-  padding: .5rem 1rem;
-  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  font-size: 0.85rem;
   cursor: pointer;
 }
+
 .btn-agregar:hover {
   background: #084a82;
 }
 
-/* SWITCH */
+/* ------------------------------
+   SWITCH PERSONALIZADO
+------------------------------ */
 .switch {
   position: relative;
   display: inline-block;
-  width: 40px;
-  height: 22px;
+  width: 36px;
+  height: 20px;
 }
-.switch input { display: none; }
+
+.switch input {
+  display: none;
+}
+
 .slider {
   position: absolute;
-  cursor: pointer;
   inset: 0;
+  cursor: pointer;
   background: #ccc;
-  border-radius: 22px;
-  transition: .3s;
+  border-radius: 20px;
+  transition: 0.3s;
 }
+
 .slider:before {
-  position: absolute;
   content: "";
-  height: 16px;
-  width: 16px;
+  position: absolute;
+  height: 14px;
+  width: 14px;
   left: 3px;
   bottom: 3px;
   background: white;
   border-radius: 50%;
-  transition: .3s;
+  transition: 0.3s;
 }
+
 input:checked + .slider {
   background: #0A5EA8;
 }
+
 input:checked + .slider:before {
-  transform: translateX(18px);
-}
-.costo-fase {
-  margin-top: 1rem;
-  font-weight: 500;
-}
-.costo-fase strong {
-  margin-left: .25rem;
+  transform: translateX(16px);
 }
 
-.porcentaje-actividad {
-  font-size: 0.8rem;
-  color: #666;
-  margin-left: 10px;
+/* ------------------------------
+   COSTO TOTAL DE LA FASE
+------------------------------ */
+.costo-fase {
+  margin-top: 0.75rem;
+  font-weight: 500;
+  font-size: 0.85rem;
 }
+
+.costo-fase strong {
+  margin-left: 0.25rem;
+}
+.fase-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+app-progreso-radial {
+  flex-shrink: 0;
+}
+
+.input-nombre {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 2px 4px;
+}
+
+.input-nombre:focus {
+  outline: none;
+  border-bottom: 1px solid #0A5EA8;
+  background: #F4F8FF;
+}
+.input-nombre {
+  width: 100%;
+  border: none;
+  border-bottom: 1px dashed #0A5EA8;
+  background: transparent;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 2px 4px;
+}
+
+.input-nombre:focus {
+  outline: none;
+  border-bottom: 2px solid #0A5EA8;
+  background: #F4F8FF;
+}
+
+.nombre {
+  cursor: pointer;
+}
+.fase-titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.fase-titulo i {
+  font-size: 1.8rem;
+  color: #4caf50;
+}
+
+
 
 

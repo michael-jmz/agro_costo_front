@@ -2,7 +2,6 @@
    ESTILOS GENERALES DE LA PÁGINA
 ------------------------------ */
 .pagina {
-  padding: 2rem;
   font-family: system-ui, sans-serif;
 }
 
@@ -70,4 +69,12 @@ input[type="number"] {
 .costo-fase strong {
   margin-left: .25rem;
 }
+:host {
+  display: block;
+}
+:host {
+  font-size: 14px;
+}
+
+
 

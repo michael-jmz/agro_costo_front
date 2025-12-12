@@ -6,4 +6,6 @@ export interface Actividad {
   activa: boolean;
   completada: boolean;
   porcentaje?: number;
+  editando?: boolean;
+  esNueva?: boolean;
 }
