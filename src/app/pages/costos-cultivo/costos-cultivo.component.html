@@ -1,1 +1,29 @@
-<p>costos-cultivo works!</p>
+<div class="pagina">
+    <header class="encabezado">
+      <h1>Costos por 1 hectárea</h1>
+
+      <div class="panel-hectareas">
+        <label>
+          Número de hectáreas:
+          <input type="number" [(ngModel)]="hectareas" (ngModelChange)="cambiarHectareas($event)">
+        </label>
+        <div class="totales">
+          <div>Costo total por 1 ha: <strong>\${{ costo1Ha | number:'1.2-2' }}</strong></div>
+          <div>Costo total para {{ hectareas }} ha:
+            <strong>\${{ costoTotal | number:'1.2-2' }}</strong>
+          </div>
+          <div>Progreso global: <strong>{{ progresoGlobal }}%</strong></div>
+        </div>
+      </div>
+    </header>
+
+  <div class="fases-grid">
+  <app-fase
+    *ngFor="let fase of fases"
+    [fase]="fase"
+    (faseActualizada)="onFaseActualizada($event)"
+  ></app-fase>
+</div>
+
+
+  </div>

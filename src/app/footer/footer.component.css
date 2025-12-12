@@ -1,0 +1,79 @@
+.footer-container {
+  background: #0c2748; /* azul institucional oscuro */
+  color: #ffffff;
+  padding: 40px 20px;
+  border-top: 4px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.footer-logos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.logo-unl,
+.logo-secundario {
+  height: 90px;
+  opacity: 0.95;
+}
+
+.footer-info {
+  flex: 1;
+  min-width: 280px;
+}
+
+.footer-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.footer-item {
+  font-size: 15px;
+  margin: 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.icon {
+  font-size: 17px;
+}
+
+.footer-radio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.radio-logo {
+  width: 160px;
+}
+
+.radio-label {
+  margin-top: 5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-logos {
+    align-items: center;
+  }
+}

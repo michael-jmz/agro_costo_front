@@ -4,4 +4,6 @@ export interface Actividad {
   unidad: string;   // ha, jornal, %
   costo: number;    // valor monetario
   activa: boolean;
+  completada: boolean;
+  porcentaje?: number;
 }

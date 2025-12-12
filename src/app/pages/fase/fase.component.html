@@ -1,1 +1,73 @@
-<p>fase works!</p>
+<div class="fase-card">
+
+  <!-- CABECERA -->
+  <div class="fase-header">
+    <div class="progreso-circular">
+      {{ fase.progreso }}%
+    </div>
+    <div>
+      <h2>{{ fase.nombre }}</h2>
+      <p class="subtitulo">Seguimiento: {{ fase.dias }} días</p>
+    </div>
+  </div>
+
+  <!-- ACTIVIDADES -->
+  <div class="actividades">
+
+    <div class="actividad" *ngFor="let actividad of fase.actividades">
+
+      <!-- SWITCH ON/OFF -->
+      <label class="switch">
+        <input type="checkbox"
+               [(ngModel)]="actividad.activa"
+               (change)="actualizarActividad()">
+        <span class="slider round"></span>
+      </label>
+
+      <!-- CHECK (se bloquea si no está activa) -->
+      <label>
+        <input type="checkbox"
+               [disabled]="!actividad.activa"
+               [(ngModel)]="actividad.completada"
+               (change)="actualizarActividad()">
+      </label>
+
+      <!-- 🔥 NOMBRE + PORCENTAJE INDIVIDUAL -->
+      <div class="actividad-info">
+        <span class="nombre">{{ actividad.nombre }}</span>
+
+        <span class="porcentaje-actividad">
+          {{ actividad.porcentaje }}%
+        </span>
+      </div>
+
+      <!-- COSTO -->
+      <input class="input-costo"
+             type="number"
+             [(ngModel)]="actividad.costo"
+             (change)="actualizarActividad()"
+             [disabled]="!actividad.activa">
+
+      <span>ha</span>
+
+      <!-- ELIMINAR -->
+      <button class="eliminar"
+              type="button"
+              (click)="eliminarActividad(actividad.id)">
+        ✕
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- COSTO TOTAL -->
+  <div class="costo-fase">
+    Costo total {{ fase.nombre }} por 1 ha:
+    <strong>\${{ fase.costoTotal | number:'1.2-2' }}</strong>
+  </div>
+
+  <button class="btn-agregar" type="button" (click)="agregarActividad()">
+    + Nueva actividad
+  </button>
+</div>

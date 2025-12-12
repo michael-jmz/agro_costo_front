@@ -1,0 +1,73 @@
+/* ------------------------------
+   ESTILOS GENERALES DE LA PÁGINA
+------------------------------ */
+.pagina {
+  padding: 2rem;
+  font-family: system-ui, sans-serif;
+}
+
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0 0 1rem 0;
+}
+
+.panel-hectareas label {
+  font-weight: 500;
+}
+
+input[type="number"] {
+  margin-left: 0.5rem;
+  width: 6rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.totales {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* ------------------------------
+   GRID PROFESIONAL PARA LAS FASES
+------------------------------ */
+
+/* GRID BASE: intenta poner 3 columnas */
+.fases-grid {
+  display: grid;
+  width: 100%;
+  gap: 2rem;
+  grid-template-columns: repeat(3, minmax(350px, 1fr));
+  margin-top: 2rem;
+}
+
+/* BREAKPOINT: si la pantalla no aguanta 3 columnas, usar 2 columnas */
+@media (max-width: 1400px) {
+  .fases-grid {
+    grid-template-columns: repeat(2, minmax(350px, 1fr));
+  }
+}
+
+/* BREAKPOINT: en pantallas medianas, una columna */
+@media (max-width: 900px) {
+  .fases-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.costo-fase {
+  margin-top: 1rem;
+  font-weight: 500;
+}
+.costo-fase strong {
+  margin-left: .25rem;
+}
+
