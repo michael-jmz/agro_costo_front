@@ -1,4 +1,100 @@
-.contenedor { padding: 2rem; text-align:center; }
-    .tarjetas { display:flex; gap:1rem; justify-content:center; margin-top:2rem; }
-    .card { padding:1.5rem 2rem; border-radius:1rem; border:1px solid #ddd; cursor:pointer; font-size:1.1rem; }
-    .card:disabled { opacity:0.4; cursor:not-allowed; }
+.contenedor-cultivos {
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.titulo {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #0b2a4a;
+}
+
+.subtitulo {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 2.5rem;
+}
+
+.tarjetas-cultivo {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.cultivo-card {
+  background: #fff;
+  border: 1px solid #e0e6ef;
+  border-radius: 14px;
+  width: 200px;
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: all 0.25s ease;
+}
+
+.cultivo-card .icon {
+  font-size: 2.2rem;
+  color: #2e7d32;
+}
+
+.cultivo-card .nombre {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.estado {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.disponible {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.proximamente {
+  background: #f0f0f0;
+  color: #777;
+}
+
+.cultivo-card.activo:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+.cultivo-card.deshabilitado {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.actividad-nombre {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge {
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.badge-cf {
+  background-color: #e3f2fd;
+  color: #0b2a4a;
+  border: 1px solid #90caf9;
+}
+
+.badge-cv {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+

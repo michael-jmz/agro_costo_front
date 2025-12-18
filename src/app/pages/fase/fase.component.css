@@ -70,9 +70,10 @@
 
 /* PORCENTAJE */
 .porcentaje-actividad {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   color: #666;
   margin-left: 6px;
+  opacity: 0.7;
 }
 
 /* INPUT COSTO */
@@ -222,6 +223,78 @@ app-progreso-radial {
   color: #4caf50;
 }
 
+.input-costo {
+  text-align: right;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.input-costo:disabled {
+  background: #eee;
+  color: #999;
+}
+
+.eliminar {
+  opacity: 0.6;
+}
+
+.eliminar:hover {
+  opacity: 1;
+}
+.btn-agregar {
+  width: 100%;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.actividad-info {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  column-gap: 4px;
+}
 
 
 
+/* NOMBRE */
+.actividad-nombre {
+  font-weight: 500;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+.tipo-costo {
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 6px;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+.tipo-costo.cf {
+  background-color: #f1f5fb;
+  color: #2a4b8d;
+  border: 1px solid #d6e0f5;
+}
+
+.tipo-costo.cv {
+  background-color: #f2faf4;
+  color: #2e7d32;
+  border: 1px solid #cfead6;
+}
+
+
+
+
+
+
+
+.porcentaje-actividad {
+  font-size: 0.65rem;
+  opacity: 0.7;
+}

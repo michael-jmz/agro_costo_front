@@ -1,29 +1,74 @@
 <div class="pagina">
-    <header class="encabezado">
-      <h1>Costos por 1 hectárea</h1>
 
-      <div class="panel-hectareas">
+  <header class="encabezado">
+    <h1>Costos por 1 hectárea</h1>
+
+    <div class="panel-resumen compacto">
+
+      <!-- CONFIGURACIÓN -->
+      <div class="panel-config">
         <label>
-          Número de hectáreas:
-          <input type="number" [(ngModel)]="hectareas" (ngModelChange)="cambiarHectareas($event)">
+          Hectáreas
+          <input
+            type="number"
+            min="1"
+            [(ngModel)]="hectareas"
+            (ngModelChange)="cambiarHectareas($event)" />
         </label>
-        <div class="totales">
-          <div>Costo total por 1 ha: <strong>\${{ costo1Ha | number:'1.2-2' }}</strong></div>
-          <div>Costo total para {{ hectareas }} ha:
-            <strong>\${{ costoTotal | number:'1.2-2' }}</strong>
-          </div>
-          <div>Progreso global: <strong>{{ progresoGlobal }}%</strong></div>
+
+        <label>
+          Quintales / ha
+          <input
+            type="number"
+            min="1"
+            [(ngModel)]="quintalesHa"
+            (ngModelChange)="cambiarQuintalesHa($event)" />
+        </label>
+
+        <label>
+          Margen
+          <input
+            type="number"
+            step="0.01"
+            min="0"
+            max="0.99"
+            [(ngModel)]="margenError"
+            (ngModelChange)="cambiarMargen($event)" />
+        </label>
+
+        <div class="costo-quintal">
+          Quintal:
+          <strong>${{ costoPorQuintal | number:'1.2-2' }}</strong>
         </div>
       </div>
-    </header>
 
-  <div class="fases-grid">
-  <app-fase
-    *ngFor="let fase of fases"
-    [fase]="fase"
-    (faseActualizada)="onFaseActualizada($event)"
-  ></app-fase>
+      <!-- HERO COMPACTO -->
+      <div class="hero-metrica compacto">
+  <span>Costo total por 1 hectárea</span>
+  <strong>${{ costo1Ha | number:'1.2-2' }}</strong>
+  <small>Total estimado para {{ hectareas }} ha</small>
+  <strong>${{ costoTotal | number:'1.2-2' }}</strong>
 </div>
 
 
-  </div>
+      <!-- PROGRESO GLOBAL -->
+      <div class="progreso-global compacto">
+        <app-progreso-radial
+          [porcentaje]="progresoGlobal">
+        </app-progreso-radial>
+        <p>{{ progresoGlobal }}%</p>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- FASES -->
+  <section class="fases-grid">
+    <app-fase
+      *ngFor="let fase of fases"
+      [fase]="fase"
+      (faseActualizada)="onFaseActualizada($event)">
+    </app-fase>
+  </section>
+
+</div>

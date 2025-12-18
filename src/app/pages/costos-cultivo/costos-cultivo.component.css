@@ -1,80 +1,148 @@
-/* ------------------------------
-   ESTILOS GENERALES DE LA PÁGINA
------------------------------- */
+/* ===============================
+   BASE
+================================ */
+:host {
+  display: block;
+  font-size: 14px;
+}
+
 .pagina {
+  background: #f5f7fa;
+  padding: 1.2rem;
   font-family: system-ui, sans-serif;
 }
 
+/* ===============================
+   ENCABEZADO
+================================ */
 .encabezado {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2rem;
-  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
 }
 
 h1 {
-  font-size: 2rem;
-  margin: 0 0 1rem 0;
+  font-size: 1.9rem;
+  color: #0A5EA8;
+  margin-bottom: 0.8rem;
 }
 
-.panel-hectareas label {
-  font-weight: 500;
-}
-
-input[type="number"] {
-  margin-left: 0.5rem;
-  width: 6rem;
-  padding: 0.25rem 0.5rem;
-}
-
-.totales {
-  margin-top: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-/* ------------------------------
-   GRID PROFESIONAL PARA LAS FASES
------------------------------- */
-
-/* GRID BASE: intenta poner 3 columnas */
-.fases-grid {
+/* ===============================
+   PANEL RESUMEN COMPACTO
+================================ */
+.panel-resumen.compacto {
   display: grid;
-  width: 100%;
-  gap: 2rem;
-  grid-template-columns: repeat(3, minmax(350px, 1fr));
-  margin-top: 2rem;
+  grid-template-columns: 1fr auto auto;
+  gap: 1.2rem;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  background: #ffffff;
+  border-radius: 14px;
+  border-left: 5px solid #0A5EA8;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 
-/* BREAKPOINT: si la pantalla no aguanta 3 columnas, usar 2 columnas */
-@media (max-width: 1400px) {
-  .fases-grid {
-    grid-template-columns: repeat(2, minmax(350px, 1fr));
-  }
-}
-
-/* BREAKPOINT: en pantallas medianas, una columna */
+/* Responsive */
 @media (max-width: 900px) {
-  .fases-grid {
+  .panel-resumen.compacto {
     grid-template-columns: 1fr;
   }
 }
 
-.costo-fase {
-  margin-top: 1rem;
-  font-weight: 500;
+/* ===============================
+   CONFIGURACIÓN COMPACTA
+================================ */
+.panel-config {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
 }
-.costo-fase strong {
-  margin-left: .25rem;
+
+.panel-config label {
+  font-size: 0.7rem;
+  color: #555;
+  display: flex;
+  flex-direction: column;
 }
-:host {
+
+.panel-config input {
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #cfd8e3;
+}
+
+.costo-quintal {
+  grid-column: span 3;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.costo-quintal strong {
+  color: #2e7d32;
+}
+
+/* ===============================
+   HERO COMPACTO
+================================ */
+.hero-metrica.compacto {
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+  color: #ffffff;
+  padding: 0.8rem 1.2rem;
+  border-radius: 14px;
+  text-align: center;
+  min-width: 200px;
+}
+
+.hero-metrica.compacto strong {
+  font-size: 1.4rem;
   display: block;
 }
-:host {
-  font-size: 14px;
+
+.hero-metrica.compacto span {
+  font-size: 0.7rem;
+  opacity: 0.9;
 }
 
+.hero-metrica.compacto small {
+  font-size: 0.7rem;
+  opacity: 0.85;
+}
 
+/* ===============================
+   PROGRESO GLOBAL COMPACTO
+================================ */
+.progreso-global.compacto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  padding: 0.6rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
 
+.progreso-global.compacto p {
+  margin-top: -0.3rem;
+  font-size: 0.7rem;
+  color: #555;
+}
+
+/* ===============================
+   FASES
+================================ */
+.fases-grid {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(3, minmax(320px, 1fr));
+}
+
+@media (max-width: 1200px) {
+  .fases-grid {
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .fases-grid {
+    grid-template-columns: 1fr;
+  }
+}

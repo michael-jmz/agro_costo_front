@@ -8,4 +8,5 @@ export interface Actividad {
   porcentaje?: number;
   editando?: boolean;
   esNueva?: boolean;
+  tipoCosto?: 'CF' | 'CV';
 }

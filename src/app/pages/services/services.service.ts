@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, map, combineLatest } from 'rxjs';
+
 import { Cultivo } from '../interfaces/cultivo.interface';
 import { Fase } from '../interfaces/fase.interface';
 
@@ -11,6 +12,13 @@ export class CultivoService {
 
   private cultivoSubject = new BehaviorSubject<Cultivo | null>(null);
   cultivo$ = this.cultivoSubject.asObservable();
+
+  private quintalesHaSubject = new BehaviorSubject<number>(150);
+  quintalesHa$ = this.quintalesHaSubject.asObservable();
+
+  private margenErrorSubject = new BehaviorSubject<number>(0.08);
+  margenError$ = this.margenErrorSubject.asObservable();
+
 
   constructor() {
     // Cargamos por defecto Maíz
@@ -30,12 +38,12 @@ export class CultivoService {
       nombre: 'Siembra',
       dias: 63,
       actividades: [
-        { id: 1, nombre: 'Desbroce del monte', unidad: 'ha', costo: 100, activa: true, completada: true },
-        { id: 2, nombre: 'Quema de maleza', unidad: 'ha', costo: 20, activa: true, completada: true },
-        { id: 3, nombre: 'Selección de semilla', unidad: 'ha', costo: 180, activa: true, completada: true },
-        { id: 4, nombre: 'Aplicación de herbicida', unidad: 'ha', costo: 115, activa: true, completada: true },
-        { id: 5, nombre: 'Desinfección de semilla', unidad: 'ha', costo: 20, activa: true, completada: true },
-        { id: 6, nombre: 'Siembra', unidad: 'ha', costo: 214, activa: true, completada: true },
+        { id: 1, nombre: 'Desbroce del monte', unidad: 'ha', costo: 20, activa: true, completada: true, tipoCosto: 'CF' },
+        { id: 2, nombre: 'Quema de maleza', unidad: 'ha', costo: 20, activa: true, completada: true, tipoCosto: 'CF'},
+        { id: 3, nombre: 'Selección de semilla', unidad: 'ha', costo: 180, activa: true, completada: true, tipoCosto: 'CF' },
+        { id: 4, nombre: 'Aplicación de herbicida', unidad: 'ha', costo: 5, activa: true, completada: true, tipoCosto: 'CV' },
+        { id: 5, nombre: 'Desinfección de semilla', unidad: 'ha', costo: 20, activa: true, completada: true, tipoCosto: 'CF' },
+        { id: 6, nombre: 'Siembra', unidad: 'ha', costo: 100, activa: true, completada: true, tipoCosto: 'CF' },
       ],
       costoTotal: 0,
       progreso: 0
@@ -43,17 +51,17 @@ export class CultivoService {
 
     const cultivo: Fase = {
       id: 2,
-      nombre: 'Cultivo',
+      nombre: 'Labores culturales',
       dias: 177,
       actividades: [
-        { id: 7,  nombre: 'Primera fertilización', unidad: 'ha', costo: 23,  activa: true, completada: true },
-        { id: 8,  nombre: 'Primer control de plagas', unidad: 'ha', costo: 175, activa: true, completada: true },
-        { id: 9,  nombre: 'Primer control de enfermedades', unidad: 'ha', costo: 61, activa: true, completada: true },
-        { id: 10, nombre: 'Aplicación de herbicida', unidad: 'ha', costo: 34, activa: true, completada: true },
-        { id: 11, nombre: 'Segunda fertilización', unidad: 'ha', costo: 142, activa: true, completada: true },
-        { id: 12, nombre: 'Segundo control de plagas', unidad: 'ha', costo: 100, activa: true, completada: true },
-        { id: 13, nombre: 'Segundo control de enfermedades', unidad: 'ha', costo: 5,   activa: true, completada: true },
-        { id: 14, nombre: 'Tercera fertilización', unidad: 'ha', costo: 142, activa: true, completada: true },
+        { id: 7,  nombre: 'Primera fertilización', unidad: 'ha', costo: 180,  activa: true, completada: true,  tipoCosto: 'CV' },
+        { id: 8,  nombre: 'Primer control de plagas', unidad: 'ha', costo: 50, activa: true, completada: true,  tipoCosto: 'CV' },
+        { id: 9,  nombre: 'Primer control de enfermedades', unidad: 'ha', costo: 35, activa: true, completada: true, tipoCosto: 'CV' },
+        { id: 10, nombre: 'Aplicación de herbicida', unidad: 'ha', costo: 25, activa: true, completada: true,  tipoCosto: 'CV'},
+        { id: 11, nombre: 'Segunda fertilización', unidad: 'ha', costo: 51, activa: true, completada: true,  tipoCosto: 'CV'},
+        { id: 12, nombre: 'Segundo control de plagas', unidad: 'ha', costo: 50, activa: true, completada: true,  tipoCosto: 'CV' },
+        { id: 13, nombre: 'Segundo control de enfermedades', unidad: 'ha', costo: 32,   activa: true, completada: true,  tipoCosto: 'CV' },
+        { id: 14, nombre: 'Tercera fertilización', unidad: 'ha', costo: 25, activa: true, completada: true,  tipoCosto: 'CV' },
       ],
       costoTotal: 0,
       progreso: 0
@@ -64,12 +72,12 @@ export class CultivoService {
       nombre: 'Cosecha',
       dias: 5,
       actividades: [
-        { id: 15, nombre: 'Recolectado', unidad: 'ha', costo: 80,   activa: true, completada: true },
-        { id: 16, nombre: 'Amontonado', unidad: 'ha', costo: 20,   activa: true, completada: true },
-        { id: 17, nombre: 'Desgranado', unidad: 'ha', costo: 4.5,  activa: true, completada: true },
-        { id: 18, nombre: 'Alquiler desgranadora', unidad: 'ha', costo: 37.5, activa: true, completada: true },
-        { id: 19, nombre: 'Ensacado y almacenamiento', unidad: 'ha', costo: 26, activa: true, completada: true },
-        { id: 20, nombre: 'Control y tratamiento del maíz', unidad: 'ha', costo: 45, activa: true, completada: true },
+        { id: 15, nombre: 'Recolectado', unidad: 'ha', costo: 80,   activa: true, completada: true, tipoCosto: 'CF' },
+        { id: 16, nombre: 'Amontonado', unidad: 'ha', costo: 80,   activa: true, completada: true, tipoCosto: 'CF' },
+        { id: 17, nombre: 'Desgranado', unidad: 'ha', costo: 0,  activa: true, completada: true, tipoCosto: 'CF' },
+        { id: 18, nombre: 'Alquiler desgranadora', unidad: 'ha', costo: 37.5, activa: true, completada: true, tipoCosto: 'CF' },
+        { id: 19, nombre: 'Ensacado y almacenamiento', unidad: 'ha', costo: 23.5, activa: true, completada: true, tipoCosto: 'CF' },
+        { id: 20, nombre: 'Control y tratamiento del maíz', unidad: 'ha', costo: 20, activa: true, completada: true, tipoCosto: 'CF' },
         { id: 21, nombre: 'Venta', unidad: 'ha', costo: 0, activa: true, completada: true },
       ],
       costoTotal: 0,
@@ -164,5 +172,48 @@ progresoGlobal$ = this.cultivo$.pipe(
       return Number(((totalCompletado / totalValor) * 100).toFixed(2));
     })
   );
+
+  // Setters
+setQuintalesHa(valor: number) {
+  if (valor <= 0) valor = 1;
+  this.quintalesHaSubject.next(valor);
+}
+
+setMargenError(valor: number) {
+  if (valor < 0) valor = 0;
+  if (valor >= 1) valor = 0.99;
+  this.margenErrorSubject.next(valor);
+}
+
+costoPorQuintal$ = combineLatest([
+  this.cultivo$,
+  this.hectareas$,
+  this.quintalesHa$,
+  this.margenError$
+]).pipe(
+  map(([cultivo, hectareas, quintalesHa, margen]) => {
+    if (!cultivo) return 0;
+
+    const costoTotal = cultivo.fases.reduce(
+      (s, f) => s + f.costoTotal,
+      0
+    );
+
+    const quintalesTotales = hectareas * quintalesHa;
+
+    // margen SIEMPRE aplicado
+    const quintalesAjustados = quintalesTotales * (1 - margen);
+
+    if (quintalesAjustados <= 0) return 0;
+
+    return +(costoTotal / quintalesAjustados).toFixed(2);
+  })
+);
+
+
+
+
+
+
 
 }

@@ -1,18 +1,33 @@
-<div class="contenedor">
-    <h1>Seleccione un cultivo</h1>
+<div class="contenedor-cultivos">
 
-    <div class="tarjetas">
-      <button class="card" (click)="irAMaiz()">
-        🌽 Maíz
-      </button>
+  <h1 class="titulo">Seleccione un cultivo</h1>
+  <p class="subtitulo">
+    Elija el cultivo para realizar el análisis de costos agrícolas
+  </p>
 
-      <button class="card" disabled>
-        ☕ Café (próximamente)
-      </button>
+  <div class="tarjetas-cultivo">
 
-      <button class="card" disabled>
-        🍫 Cacao (próximamente)
-      </button>
-    </div>
+    <!-- MAÍZ -->
+    <button class="cultivo-card activo" (click)="irAMaiz()">
+      <i class="fas fa-seedling icon"></i>
+      <span class="nombre">Maíz</span>
+      <span class="estado disponible">Disponible</span>
+    </button>
+
+    <!-- CAFÉ -->
+    <button class="cultivo-card deshabilitado" disabled aria-disabled="true">
+      <i class="fas fa-coffee icon"></i>
+      <span class="nombre">Café</span>
+      <span class="estado proximamente">Próximamente</span>
+    </button>
+
+    <!-- CACAO -->
+    <button class="cultivo-card deshabilitado" disabled aria-disabled="true">
+      <i class="fas fa-leaf icon"></i>
+      <span class="nombre">Cacao</span>
+      <span class="estado proximamente">Próximamente</span>
+    </button>
+
   </div>
 
+</div>
