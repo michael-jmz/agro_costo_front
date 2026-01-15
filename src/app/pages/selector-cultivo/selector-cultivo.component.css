@@ -98,3 +98,13 @@
   border: 1px solid #a5d6a7;
 }
 
+.cultivo-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #f4f8ff;
+  padding: 6px;
+}
+
+

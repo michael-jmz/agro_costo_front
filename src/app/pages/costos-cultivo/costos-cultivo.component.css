@@ -175,3 +175,74 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
+/* ===============================
+   MOBILE FIX – PANEL SUPERIOR
+================================ */
+@media (max-width: 768px) {
+
+  .panel-resumen.compacto {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .panel-config {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .panel-config label {
+    font-size: 0.85rem;
+  }
+
+  .quintales-info {
+    font-size: 0.85rem;
+    padding: 0.6rem;
+  }
+
+  .hero-metrica.compacto {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .hero-metrica.compacto strong {
+    font-size: 1.5rem;
+  }
+
+  .progreso-global.compacto {
+    margin-top: 0.5rem;
+  }
+}
+/* ===============================
+   MOBILE FIX – GRID COLUMN RESET
+================================ */
+@media (max-width: 768px) {
+
+  .costo-quintal,
+  .quintales-info {
+    grid-column: span 1;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+/* ===============================
+   MOBILE FIX – TARJETA VERDE
+================================ */
+@media (max-width: 768px) {
+
+  .hero-metrica.compacto {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.2rem 1rem;
+    border-radius: 14px;
+    box-sizing: border-box;
+  }
+
+  .hero-metrica.compacto strong {
+    font-size: 1.6rem;
+  }
+
+  .hero-metrica.compacto span,
+  .hero-metrica.compacto small {
+    font-size: 0.8rem;
+  }
+}
