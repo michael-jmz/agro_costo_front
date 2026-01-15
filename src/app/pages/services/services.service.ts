@@ -13,10 +13,10 @@ export class CultivoService {
   private cultivoSubject = new BehaviorSubject<Cultivo | null>(null);
   cultivo$ = this.cultivoSubject.asObservable();
 
-  private quintalesHaSubject = new BehaviorSubject<number>(150);
+  private quintalesHaSubject = new BehaviorSubject<number>(165);
   quintalesHa$ = this.quintalesHaSubject.asObservable();
 
-  private margenErrorSubject = new BehaviorSubject<number>(0.08);
+  private margenErrorSubject = new BehaviorSubject<number>(0.10);
   margenError$ = this.margenErrorSubject.asObservable();
 
 
@@ -104,15 +104,15 @@ export class CultivoService {
       .filter(a => a.activa && a.completada)
       .reduce((sum, a) => sum + a.costo, 0);
 
-    // 🔥 ACTUALIZAR COSTO TOTAL
+    // ACTUALIZAR COSTO TOTAL
     f.costoTotal = totalCostosActivos;
 
-    // 🔥 ACTUALIZAR PROGRESO PONDERADO
+    // ACTUALIZAR PROGRESO PONDERADO
     f.progreso = totalCostosActivos === 0
       ? 0
       : Math.round((totalCompletado / totalCostosActivos) * 100);
 
-    // 🔥 ACTUALIZAR PORCENTAJE DE CADA ACTIVIDAD
+    // ACTUALIZAR PORCENTAJE DE CADA ACTIVIDAD
     f.actividades.forEach(a => {
       if (!a.activa || totalCostosActivos === 0) {
         a.porcentaje = 0;
@@ -194,21 +194,58 @@ costoPorQuintal$ = combineLatest([
   map(([cultivo, hectareas, quintalesHa, margen]) => {
     if (!cultivo) return 0;
 
-    const costoTotal = cultivo.fases.reduce(
+    // costo por 1 hectárea
+    const costo1Ha = cultivo.fases.reduce(
       (s, f) => s + f.costoTotal,
       0
     );
 
+    // ESCALAR costo según hectáreas
+    const costoTotal = costo1Ha * hectareas;
+
+    // producción
     const quintalesTotales = hectareas * quintalesHa;
+    const quintalesReales = quintalesTotales * (1 - margen);
 
-    // margen SIEMPRE aplicado
-    const quintalesAjustados = quintalesTotales * (1 - margen);
+    if (quintalesReales <= 0) return 0;
 
-    if (quintalesAjustados <= 0) return 0;
-
-    return +(costoTotal / quintalesAjustados).toFixed(2);
+    return +(costoTotal / quintalesReales).toFixed(2);
   })
 );
+
+
+// Quintales teóricos (sin merma)
+quintalesTotales$ = combineLatest([
+  this.hectareas$,
+  this.quintalesHa$
+]).pipe(
+  map(([hectareas, quintalesHa]) => +(hectareas * quintalesHa).toFixed(2))
+);
+
+// Quintales de merma (desperdicio)
+quintalesMerma$ = combineLatest([
+  this.hectareas$,
+  this.quintalesHa$,
+  this.margenError$
+]).pipe(
+  map(([hectareas, quintalesHa, margen]) =>
+    +((hectareas * quintalesHa) * margen).toFixed(2)
+  )
+);
+
+// Quintales reales (teóricos - merma)
+quintalesReales$ = combineLatest([
+  this.hectareas$,
+  this.quintalesHa$,
+  this.margenError$
+]).pipe(
+  map(([hectareas, quintalesHa, margen]) => {
+    const totales = hectareas * quintalesHa;
+    const reales = totales * (1 - margen);
+    return +(reales).toFixed(2);
+  })
+);
+
 
 
 

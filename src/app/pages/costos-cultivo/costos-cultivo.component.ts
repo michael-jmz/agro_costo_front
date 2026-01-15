@@ -25,6 +25,10 @@ export default class CostosCultivoComponent implements OnDestroy {
   quintalesHa = 150;
   margenError = 0.08;
   costoPorQuintal = 0;
+  quintalesTotales = 0;
+  quintalesMerma = 0;
+  quintalesReales = 0;
+
 
 
   private subCultivo?: Subscription;
@@ -46,6 +50,11 @@ export default class CostosCultivoComponent implements OnDestroy {
   this.cultivoService.quintalesHa$.subscribe(v => this.quintalesHa = v);
   this.cultivoService.margenError$.subscribe(v => this.margenError = v);
   this.cultivoService.costoPorQuintal$.subscribe(v => this.costoPorQuintal = v);
+
+  this.cultivoService.quintalesTotales$.subscribe(v => this.quintalesTotales = v);
+  this.cultivoService.quintalesMerma$.subscribe(v => this.quintalesMerma = v);
+  this.cultivoService.quintalesReales$.subscribe(v => this.quintalesReales = v);
+
 }
 
 
@@ -68,13 +77,7 @@ export default class CostosCultivoComponent implements OnDestroy {
   // progreso global
   this.progresoGlobal = this.cultivoService.obtenerProgresoGlobal();
 
-  //quintales tales
-  const quintalesTotales = this.quintalesHa * this.hectareas;
 
-  // costo por quintal
-  this.costoPorQuintal = quintalesTotales > 0
-    ? this.costoTotal / quintalesTotales
-    : 0;
 }
 
 

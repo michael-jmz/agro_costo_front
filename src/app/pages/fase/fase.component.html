@@ -5,12 +5,12 @@
     <app-progreso-radial [porcentaje]="fase.progreso"></app-progreso-radial>
 
     <div class="fase-titulo">
-      <i class="fas" [ngClass]="{
-         'fa-seedling': fase.nombre === 'Siembra',
-         'fa-leaf': fase.nombre === 'Cultivo',
-         'fa-tractor': fase.nombre === 'Cosecha'
-       }">
-      </i>
+      <img
+  class="fase-imagen"
+  [src]="getImagenFase(fase.nombre)"
+  [alt]="fase.nombre"
+/>
+
 
       <div>
         <h2>{{ fase.nombre }}</h2>

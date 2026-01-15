@@ -298,3 +298,29 @@ app-progreso-radial {
   font-size: 0.65rem;
   opacity: 0.7;
 }
+
+
+/* IMAGEN DE LA FASE */
+.fase-imagen {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  background: #f4f8ff;
+  padding: 8px;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  flex-shrink: 0;
+}
+
+.fase-titulo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.fase-imagen {
+  width: 64px;
+  height: 64px;
+  padding: 10px;
+}
+
+

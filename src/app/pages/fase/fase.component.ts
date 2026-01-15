@@ -120,9 +120,23 @@ confirmarNuevaActividad(actividad: Actividad) {
 
   actividad.esNueva = false;
 
-  // ✅ AHORA sí recalcula
+  // AHORA sí recalcula
   this.recalcularFase();
 }
+getImagenFase(nombre: string): string {
+  switch (nombre) {
+    case 'Siembra':
+      return 'siembra.jpeg';
+    case 'Labores culturales':
+    case 'Cultivo':
+      return 'cultural.jpeg';
+    case 'Cosecha':
+      return 'cosecha.jpeg';
+    default:
+      return 'image.png';
+  }
+}
+
 
 
 

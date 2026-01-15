@@ -7,40 +7,40 @@
 }
 
 .pagina {
-  background: #f5f7fa;
-  padding: 1.2rem;
-  font-family: system-ui, sans-serif;
+  background: #f4f6f9;
+  padding: 1.5rem;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 
 /* ===============================
    ENCABEZADO
 ================================ */
 .encabezado {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.6rem;
 }
 
 h1 {
   font-size: 1.9rem;
-  color: #0A5EA8;
-  margin-bottom: 0.8rem;
+  font-weight: 700;
+  color: #0a5ea8;
+  margin-bottom: 1rem;
 }
 
 /* ===============================
-   PANEL RESUMEN COMPACTO
+   PANEL RESUMEN
 ================================ */
 .panel-resumen.compacto {
   display: grid;
   grid-template-columns: 1fr auto auto;
-  gap: 1.2rem;
+  gap: 1.4rem;
   align-items: center;
-  padding: 1rem 1.2rem;
+  padding: 1.2rem 1.4rem;
   background: #ffffff;
-  border-radius: 14px;
-  border-left: 5px solid #0A5EA8;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  border-radius: 16px;
+  border-left: 6px solid #0a5ea8;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
 }
 
-/* Responsive */
 @media (max-width: 900px) {
   .panel-resumen.compacto {
     grid-template-columns: 1fr;
@@ -48,88 +48,117 @@ h1 {
 }
 
 /* ===============================
-   CONFIGURACIÓN COMPACTA
+   CONFIGURACIÓN
 ================================ */
 .panel-config {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.6rem;
+  gap: 0.8rem;
 }
 
 .panel-config label {
-  font-size: 0.7rem;
-  color: #555;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #5f6b7a;
   display: flex;
   flex-direction: column;
+  gap: 0.25rem;
 }
 
 .panel-config input {
-  padding: 0.35rem 0.5rem;
-  border-radius: 6px;
+  padding: 0.45rem 0.6rem;
+  border-radius: 8px;
   border: 1px solid #cfd8e3;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
 }
 
-.costo-quintal {
-  grid-column: span 3;
-  font-size: 0.75rem;
-  color: #666;
-}
-
-.costo-quintal strong {
-  color: #2e7d32;
+.panel-config input:focus {
+  outline: none;
+  border-color: #0a5ea8;
+  box-shadow: 0 0 0 2px rgba(10,94,168,0.15);
 }
 
 /* ===============================
-   HERO COMPACTO
+   COSTO POR QUINTAL (DESTACADO)
+================================ */
+.costo-quintal {
+  grid-column: span 3;
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1b5e20;
+  background: #e8f5e9;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+}
+
+.costo-quintal strong {
+  font-size: 1rem;
+  margin-left: 0.3rem;
+}
+
+/* ===============================
+   BLOQUE QUINTALES
+================================ */
+.quintales-info {
+  grid-column: span 3;
+  background: #f8fafc;
+  border: 1px solid #e1e7ef;
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.75rem;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.quintales-info strong {
+  color: #0a5ea8;
+}
+
+/* ===============================
+   HERO METRICA
 ================================ */
 .hero-metrica.compacto {
   background: linear-gradient(135deg, #2e7d32, #1b5e20);
   color: #ffffff;
-  padding: 0.8rem 1.2rem;
-  border-radius: 14px;
+  padding: 1rem 1.3rem;
+  border-radius: 16px;
   text-align: center;
-  min-width: 200px;
+  min-width: 220px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
 .hero-metrica.compacto strong {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  font-weight: 700;
   display: block;
 }
 
-.hero-metrica.compacto span {
-  font-size: 0.7rem;
+.hero-metrica.compacto span,
+.hero-metrica.compacto small {
+  font-size: 0.75rem;
   opacity: 0.9;
 }
 
-.hero-metrica.compacto small {
-  font-size: 0.7rem;
-  opacity: 0.85;
-}
-
 /* ===============================
-   PROGRESO GLOBAL COMPACTO
+   PROGRESO GLOBAL
 ================================ */
 .progreso-global.compacto {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   background: #ffffff;
-  padding: 0.6rem;
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-}
-
-.progreso-global.compacto p {
-  margin-top: -0.3rem;
-  font-size: 0.7rem;
-  color: #555;
+  padding: 0.8rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
 }
 
 /* ===============================
    FASES
 ================================ */
 .fases-grid {
-  margin-top: 1.5rem;
+  margin-top: 1.8rem;
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(3, minmax(320px, 1fr));
