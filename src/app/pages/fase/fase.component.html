@@ -1,90 +1,140 @@
 <div class="fase-card">
 
-  <!-- CABECERA -->
+  <!-- ===================== CABECERA ===================== -->
   <div class="fase-header">
-    <app-progreso-radial [porcentaje]="fase.progreso"></app-progreso-radial>
+    <app-progreso-radial
+      class="fase-progreso"
+      [porcentaje]="fase.progreso">
+    </app-progreso-radial>
 
     <div class="fase-titulo">
       <img
-  class="fase-imagen"
-  [src]="getImagenFase(fase.nombre)"
-  [alt]="fase.nombre"
-/>
+        class="fase-imagen"
+        [src]="getImagenFase(fase.nombre)"
+        [alt]="fase.nombre" />
 
-
-      <div>
-        <h2>{{ fase.nombre }}</h2>
-        <p class="subtitulo">Seguimiento: {{ fase.dias }} días</p>
+      <div class="fase-texto">
+        <h2 class="fase-nombre">{{ fase.nombre }}</h2>
+        <p class="subtitulo">
+          <i class="fa-solid fa-clock"></i>
+          Seguimiento: {{ fase.dias }} días
+        </p>
       </div>
     </div>
   </div>
 
-
-  <!-- ACTIVIDADES -->
+  <!-- ===================== ACTIVIDADES ===================== -->
   <div class="actividades">
 
     <div class="actividad" *ngFor="let actividad of fase.actividades">
 
-      <!-- SWITCH ON/OFF -->
+      <!-- APLICA -->
       <label class="switch">
-        <input type="checkbox" [(ngModel)]="actividad.activa" (change)="actualizarActividad()">
-        <span class="slider round"></span>
+        <input
+          type="checkbox"
+          [(ngModel)]="actividad.activa"
+          (change)="actualizarActividad()" />
+        <span class="slider"></span>
       </label>
 
-      <!-- CHECK (se bloquea si no está activa) -->
-      <label>
-        <input type="checkbox" [disabled]="!actividad.activa" [(ngModel)]="actividad.completada"
-          (change)="actualizarActividad()">
+      <!-- REALIZADA -->
+      <label class="check-realizada">
+        <input
+          type="checkbox"
+          [disabled]="!actividad.activa"
+          [(ngModel)]="actividad.completada"
+          (change)="actualizarActividad()" />
       </label>
 
-      <!-- NOMBRE + PORCENTAJE INDIVIDUAL -->
+      <!-- INFO -->
       <div class="actividad-info">
 
-        <!-- INPUT solo cuando es nueva -->
-        <input *ngIf="actividad.esNueva" type="text" class="input-nombre" [(ngModel)]="actividad.nombre"
-          placeholder="Nombre de la actividad" (blur)="confirmarNuevaActividad(actividad)"
-          (keyup.enter)="confirmarNuevaActividad(actividad)" />
+        <!-- INPUT NUEVO -->
+        <input
+          *ngIf="actividad.esNueva"
+          type="text"
+          class="input-nombre"
+          [(ngModel)]="actividad.nombre"
+          placeholder="Nombre de la actividad"
+          (keyup.enter)="confirmarNuevaActividad(actividad)"
+          (blur)="confirmarNuevaActividad(actividad)" />
 
-        <!-- TEXTO cuando ya existe -->
-        <span *ngIf="!actividad.esNueva" class="actividad-nombre">
+        <!-- NOMBRE NORMAL -->
+        <span
+          *ngIf="!actividad.esNueva"
+          class="actividad-nombre">
           {{ actividad.nombre }}
         </span>
 
-        <!-- CF / CV -->
-        <span *ngIf="actividad.tipoCosto" class="tipo-costo" [ngClass]="actividad.tipoCosto === 'CF' ? 'cf' : 'cv'">
-          {{ actividad.tipoCosto }}
+        <!-- META -->
+        <div class="actividad-meta">
+          <span
+            *ngIf="actividad.tipoCosto"
+            class="tipo-costo"
+            [ngClass]="actividad.tipoCosto === 'CF' ? 'cf' : 'cv'">
+            {{ actividad.tipoCosto }}
+          </span>
 
-        </span>
-
-        <!-- PORCENTAJE -->
-        <span class="porcentaje-actividad">
-          {{ actividad.porcentaje }}%
-        </span>
-
+          <span class="porcentaje-actividad">
+            {{ actividad.porcentaje }}%
+          </span>
+        </div>
       </div>
 
       <!-- COSTO -->
-      <input class="input-costo" type="number" [(ngModel)]="actividad.costo" (change)="actualizarActividad()"
-        [disabled]="!actividad.activa">
+      <div class="actividad-costo">
+        <div class="costo-input">
+          <input
+            type="number"
+            class="input-costo"
+            [(ngModel)]="actividad.costo"
+            [disabled]="!actividad.activa"
+            (change)="actualizarActividad()" />
+          <span class="unidad">ha</span>
+        </div>
 
-      <span>ha</span>
+        <small
+          class="costo-total"
+          *ngIf="actividad.activa">
+          Total ({{ hectareas }} ha):
+          <strong>
+            ${{ actividad.costoTotal | number:'1.2-2' }}
+          </strong>
+        </small>
+      </div>
 
       <!-- ELIMINAR -->
-      <button class="eliminar" type="button" (click)="eliminarActividad(actividad.id)">
-        ✕
+      <button
+        class="eliminar"
+        type="button"
+        title="Eliminar actividad"
+        (click)="eliminarActividad(actividad.id)">
+        <i class="fa-solid fa-xmark"></i>
       </button>
 
     </div>
-
   </div>
 
-  <!-- COSTO TOTAL -->
-  <div class="costo-fase">
-    Costo total {{ fase.nombre }} por 1 ha:
-    <strong>${{ fase.costoTotal | number:'1.2-2' }}</strong>
+  <!-- ===================== TOTALES ===================== -->
+  <div class="totales">
+    <div class="costo-fase">
+      Costo total {{ fase.nombre }} por 1 ha:
+      <strong>${{ fase.costoTotal | number:'1.2-2' }}</strong>
+    </div>
+
+    <div class="costo-fase-extra">
+      Total para {{ hectareas }} ha:
+      <strong>${{ fase.costoTotalHectareas | number:'1.2-2' }}</strong>
+    </div>
   </div>
 
-  <button class="btn-agregar" type="button" (click)="agregarActividad()">
-    + Nueva actividad
+  <!-- ===================== NUEVA ACTIVIDAD ===================== -->
+  <button
+    class="btn-agregar"
+    type="button"
+    (click)="agregarActividad()">
+    <i class="fa-solid fa-plus"></i>
+    Nueva actividad
   </button>
+
 </div>

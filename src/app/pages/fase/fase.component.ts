@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges  } from '@angular/core';
 import { Actividad } from '../interfaces/actividad.interface';
 import { Fase } from '../interfaces/fase.interface';
 import { CommonModule } from '@angular/common';
@@ -13,12 +13,19 @@ import { ProgresoRadialComponent } from '../../progreso-radial/progreso-radial.c
 })
 export class FaseComponent {
   @Input() fase!: Fase;
+  @Input() hectareas: number = 1;
   @Output() faseActualizada = new EventEmitter<Fase>();
 
   ngOnInit() {
     //Al entrar al componente ya calcula porcentajes
     this.recalcularFase();
   }
+  ngOnChanges(changes: SimpleChanges) {
+  if (changes['hectareas']) {
+    this.recalcularFase();
+  }
+}
+
 
 
   onCambio() {
@@ -47,42 +54,43 @@ export class FaseComponent {
   };
 
   this.fase.actividades.push(nueva);
+   this.recalcularFase();     // 🔥 recalcula fase
+  this.emitirCambio();
 }
 
 
 
-  private recalcularFase() {
+ private recalcularFase() {
   const actividades = this.fase.actividades;
 
-  // Total de valor SOLO de actividades activas
-  const totalValor = actividades
+  const totalCostosActivos = actividades
     .filter(a => a.activa)
     .reduce((sum, a) => sum + (a.costo || 0), 0);
 
-  // Total completado ponderado
   const totalCompletado = actividades
     .filter(a => a.activa && a.completada)
     .reduce((sum, a) => sum + (a.costo || 0), 0);
 
-  // Guardar costo total
-  this.fase.costoTotal = totalValor;
+  this.fase.costoTotal = totalCostosActivos;
 
-  // Calcular porcentaje ponderado
-  this.fase.progreso = totalValor === 0
+  this.fase.progreso = totalCostosActivos === 0
     ? 0
-    : Math.round((totalCompletado / totalValor) * 100);
+    : Math.round((totalCompletado / totalCostosActivos) * 100);
 
-  // Calcular porcentaje individual de cada actividad
   actividades.forEach(a => {
-    if (!a.activa || totalValor === 0) {
-      a.porcentaje = 0;
-    } else {
-      a.porcentaje = Number(((a.costo / totalValor) * 100).toFixed(2));
-    }
+    a.porcentaje = (!a.activa || totalCostosActivos === 0)
+      ? 0
+      : +((a.costo / totalCostosActivos) * 100).toFixed(2);
+
+    a.costoTotal = a.activa ? a.costo * this.hectareas : 0;
   });
 
+  this.fase.costoTotalHectareas = this.fase.costoTotal * this.hectareas;
+
+  // 🔥 ESTO ES LO QUE FALTABA
   this.faseActualizada.emit(this.fase);
 }
+
 
 
   emitirCambio() {
@@ -104,6 +112,7 @@ calcularProgreso() {
   confirmarNombre(actividad: Actividad) {
   if (!actividad.nombre || actividad.nombre.trim() === '') {
     actividad.nombre = 'Actividad nueva';
+
   }
 
   actividad.editando = false;
@@ -122,6 +131,8 @@ confirmarNuevaActividad(actividad: Actividad) {
 
   // AHORA sí recalcula
   this.recalcularFase();
+
+  this.emitirCambio();
 }
 getImagenFase(nombre: string): string {
   switch (nombre) {

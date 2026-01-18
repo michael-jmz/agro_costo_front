@@ -1,326 +1,315 @@
-/* ------------------------------
-   CARD PRINCIPAL DE LA FASE
------------------------------- */
+/* =========================
+   FASE CARD
+========================= */
 .fase-card {
   background: #ffffff;
-  border-radius: 10px;
-  padding: 1.1rem;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-/* ------------------------------
-   HEADER DE LA FASE
------------------------------- */
+/* =========================
+   CABECERA
+========================= */
 .fase-header {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
-  margin-bottom: 0.7rem;
+  gap: 18px;
 }
 
-/* CÍRCULO DE PROGRESO */
-.progreso-circular {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 4px solid #0A5EA8;
+.fase-titulo {
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-weight: 600;
-  font-size: 0.85rem;
-  color: #0A5EA8;
+  gap: 12px;
 }
 
-/* SUBTÍTULO */
+.fase-imagen {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.fase-nombre {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #020617;
+}
+
 .subtitulo {
-  color: #666;
-  font-size: 0.8rem;
+  font-size: 12px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-/* ------------------------------
-   LISTADO DE ACTIVIDADES
------------------------------- */
+/* =========================
+   ACTIVIDADES
+========================= */
 .actividades {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 12px;
 }
 
-/* ACTIVIDAD INDIVIDUAL */
+/* =========================
+   ACTIVIDAD
+========================= */
 .actividad {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 10px 14px;
+
   display: grid;
-  grid-template-columns: 36px 26px auto 80px 18px 28px;
+  grid-template-columns:
+    40px
+    26px
+    1fr
+    140px
+    32px;
+
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.45rem;
-  border-radius: 6px;
-  transition: background 0.2s ease;
+  gap: 12px;
+
+  box-shadow:
+    0 4px 12px rgba(15, 23, 42, 0.06),
+    inset 0 0 0 1px #eef2f7;
 }
 
-.actividad:hover {
-  background: #F4F8FF;
-}
-
-/* NOMBRE DE LA ACTIVIDAD */
-.nombre {
-  font-weight: 500;
-  font-size: 0.85rem;
-}
-
-/* PORCENTAJE */
-.porcentaje-actividad {
-  font-size: 0.65rem;
-  color: #666;
-  margin-left: 6px;
-  opacity: 0.7;
-}
-
-/* INPUT COSTO */
-.input-costo {
-  padding: 0.2rem 0.35rem;
-  width: 70px;
-  font-size: 0.8rem;
-}
-
-/* BOTÓN ELIMINAR */
-.eliminar {
-  background: transparent;
-  border: none;
-  color: #c00;
-  font-size: 1.1rem;
-  cursor: pointer;
-}
-
-.eliminar:hover {
-  color: #ff0000;
-}
-
-/* ------------------------------
-   BOTÓN AGREGAR ACTIVIDAD
------------------------------- */
-.btn-agregar {
-  margin-top: 0.75rem;
-  background: #0A5EA8;
-  color: white;
-  border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 5px;
-  font-size: 0.85rem;
-  cursor: pointer;
-}
-
-.btn-agregar:hover {
-  background: #084a82;
-}
-
-/* ------------------------------
-   SWITCH PERSONALIZADO
------------------------------- */
+/* =========================
+   SWITCH
+========================= */
 .switch {
   position: relative;
-  display: inline-block;
-  width: 36px;
+  width: 40px;
   height: 20px;
 }
 
 .switch input {
-  display: none;
+  opacity: 0;
 }
 
 .slider {
   position: absolute;
   inset: 0;
-  cursor: pointer;
-  background: #ccc;
-  border-radius: 20px;
-  transition: 0.3s;
+  background: #cbd5e1;
+  border-radius: 999px;
+  transition: .25s;
 }
 
-.slider:before {
+.slider::before {
   content: "";
   position: absolute;
-  height: 14px;
   width: 14px;
+  height: 14px;
   left: 3px;
   bottom: 3px;
-  background: white;
+  background: #ffffff;
   border-radius: 50%;
-  transition: 0.3s;
+  transition: .25s;
 }
 
-input:checked + .slider {
-  background: #0A5EA8;
+.switch input:checked + .slider {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
 }
 
-input:checked + .slider:before {
-  transform: translateX(16px);
+.switch input:checked + .slider::before {
+  transform: translateX(20px);
 }
 
-/* ------------------------------
-   COSTO TOTAL DE LA FASE
------------------------------- */
-.costo-fase {
-  margin-top: 0.75rem;
-  font-weight: 500;
-  font-size: 0.85rem;
+/* =========================
+   CHECK
+========================= */
+.check-realizada input {
+  width: 15px;
+  height: 15px;
+  accent-color: #16a34a;
 }
 
-.costo-fase strong {
-  margin-left: 0.25rem;
-}
-.fase-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-app-progreso-radial {
-  flex-shrink: 0;
-}
-
-.input-nombre {
-  width: 100%;
-  border: none;
-  background: transparent;
-  font-size: 0.95rem;
-  font-weight: 500;
-  padding: 2px 4px;
-}
-
-.input-nombre:focus {
-  outline: none;
-  border-bottom: 1px solid #0A5EA8;
-  background: #F4F8FF;
-}
-.input-nombre {
-  width: 100%;
-  border: none;
-  border-bottom: 1px dashed #0A5EA8;
-  background: transparent;
-  font-size: 0.95rem;
-  font-weight: 500;
-  padding: 2px 4px;
-}
-
-.input-nombre:focus {
-  outline: none;
-  border-bottom: 2px solid #0A5EA8;
-  background: #F4F8FF;
-}
-
-.nombre {
-  cursor: pointer;
-}
-.fase-titulo {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.fase-titulo i {
-  font-size: 1.8rem;
-  color: #4caf50;
-}
-
-.input-costo {
-  text-align: right;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.input-costo:disabled {
-  background: #eee;
-  color: #999;
-}
-
-.eliminar {
-  opacity: 0.6;
-}
-
-.eliminar:hover {
-  opacity: 1;
-}
-.btn-agregar {
-  width: 100%;
-  margin-top: 1rem;
-  text-align: center;
-}
-
+/* =========================
+   INFO
+========================= */
 .actividad-info {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
-  align-items: center;
-  column-gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
 }
 
-
-
-/* NOMBRE */
 .actividad-nombre {
-  font-weight: 500;
-  color: #1a1a1a;
+  font-size: 14px;
+  font-weight: 600;
+  color: #020617;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-
+.actividad-meta {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
 
 .tipo-costo {
-  font-size: 0.65rem;
+  font-size: 10.5px;
+  padding: 2px 8px;
+  border-radius: 999px;
   font-weight: 600;
-  padding: 1px 6px;
-  border-radius: 6px;
-  opacity: 0.85;
-  white-space: nowrap;
 }
 
 .tipo-costo.cf {
-  background-color: #f1f5fb;
-  color: #2a4b8d;
-  border: 1px solid #d6e0f5;
+  background: #e0edff;
+  color: #1d4ed8;
 }
 
 .tipo-costo.cv {
-  background-color: #f2faf4;
-  color: #2e7d32;
-  border: 1px solid #cfead6;
+  background: #e7f8ec;
+  color: #15803d;
 }
-
-
-
-
-
-
 
 .porcentaje-actividad {
-  font-size: 0.65rem;
-  opacity: 0.7;
+  font-size: 11px;
+  color: #64748b;
 }
 
-
-/* IMAGEN DE LA FASE */
-.fase-imagen {
-  width: 56px;
-  height: 56px;
-  object-fit: contain;
-  background: #f4f8ff;
-  padding: 8px;
-  border-radius: 14px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  flex-shrink: 0;
+/* =========================
+   INPUT NOMBRE
+========================= */
+.input-nombre {
+  width: 100%;
+  height: 32px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+  font-weight: 500;
 }
 
-.fase-titulo {
+.input-nombre:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.25);
+}
+
+/* =========================
+   COSTO
+========================= */
+.actividad-costo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0;
+}
+
+.costo-input {
   display: flex;
   align-items: center;
-  gap: 1rem;
-}
-.fase-imagen {
-  width: 64px;
-  height: 64px;
-  padding: 10px;
+  gap: 4px;
 }
 
+.input-costo {
+  width: 68px;
+  height: 30px;
+  padding: 4px 6px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 13px;
+  text-align: right;
+}
 
+.unidad {
+  font-size: 12px;
+  color: #475569;
+}
+
+.costo-total {
+  font-size: 10.5px;
+  color: #2563eb;
+  white-space: nowrap;
+}
+
+/* =========================
+   ELIMINAR
+========================= */
+.eliminar {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.eliminar:hover {
+  background: rgba(239, 68, 68, 0.12);
+}
+
+/* =========================
+   TOTALES
+========================= */
+.totales {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.costo-fase,
+.costo-fase-extra {
+  font-size: 13.5px;
+}
+
+.costo-fase-extra strong {
+  color: #15803d;
+}
+
+/* =========================
+   BOTÓN
+========================= */
+.btn-agregar {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+}
+
+.btn-agregar:hover {
+  filter: brightness(1.05);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .actividad {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .actividad-costo {
+    align-items: flex-start;
+  }
+
+  .totales {
+    text-align: left;
+  }
+}

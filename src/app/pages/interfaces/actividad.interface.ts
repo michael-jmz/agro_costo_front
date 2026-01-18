@@ -9,4 +9,6 @@ export interface Actividad {
   editando?: boolean;
   esNueva?: boolean;
   tipoCosto?: 'CF' | 'CV';
+  costoTotal?: number; // costo * hectareas (solo lectura)
+
 }

@@ -30,7 +30,8 @@
 
         <div class="quintales-info">
           <div>Quintales totales: <strong>{{ quintalesTotales | number:'1.0-2' }}</strong></div>
-          <div>Porcentaje de error ({{ (margenError * 100) | number:'1.0-0' }}%): <strong>{{ quintalesMerma | number:'1.0-2'
+          <div>Porcentaje de error ({{ (margenError * 100) | number:'1.0-0' }}%): <strong>{{ quintalesMerma |
+              number:'1.0-2'
               }}</strong></div>
           <div>Quintales reales: <strong>{{ quintalesReales | number:'1.0-2' }}</strong></div>
         </div>
@@ -58,8 +59,12 @@
 
   <!-- FASES -->
   <section class="fases-grid">
-    <app-fase *ngFor="let fase of fases" [fase]="fase" (faseActualizada)="onFaseActualizada($event)">
+    <!-- <app-fase *ngFor="let fase of fases" [fase]="fase" (faseActualizada)="onFaseActualizada($event)"> -->
+    <app-fase *ngFor="let fase of fases" [fase]="fase" [hectareas]="hectareas"
+      (faseActualizada)="onFaseActualizada($event)">
     </app-fase>
+
+
   </section>
 
 </div>

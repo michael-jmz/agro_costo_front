@@ -7,4 +7,5 @@ export interface Fase {
   actividades: Actividad[];
   progreso: number;
   costoTotal: number;
+  costoTotalHectareas?: number;
 }
