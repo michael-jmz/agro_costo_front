@@ -10,6 +10,10 @@
         <label>
           Hectáreas
           <input type="number" min="1" [(ngModel)]="hectareas" (ngModelChange)="cambiarHectareas($event)" />
+           <!-- ETIQUETA DINÁMICA -->
+  <span class="etiqueta-producto" [ngClass]="tipoProducto.clase">
+    {{ tipoProducto.texto }}
+  </span>
         </label>
 
         <label>

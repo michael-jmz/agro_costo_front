@@ -246,3 +246,35 @@ h1 {
     font-size: 0.8rem;
   }
 }
+
+/* ===============================
+   ETIQUETA TIPO DE PRODUCTOR
+================================ */
+.etiqueta-producto {
+  margin-top: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  width: fit-content;
+  display: inline-block;
+}
+
+/* Pequeño */
+.etiqueta-producto.pequeno {
+  background: #e3f2fd;
+  color: #0a5ea8;
+}
+
+/* Mediano */
+.etiqueta-producto.mediano {
+  background: #fff8e1;
+  color: #8d6e00;
+}
+
+/* Grande */
+.etiqueta-producto.grande {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+

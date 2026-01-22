@@ -96,6 +96,34 @@ cambiarMargen(valor: number) {
   this.cultivoService.setMargenError(valor);
 }
 
+get tipoProducto() {
+  if (this.hectareas >= 1 && this.hectareas <= 4) {
+    return {
+      texto: 'Pequeño productor',
+      clase: 'pequeno'
+    };
+  }
+
+  if (this.hectareas >= 5 && this.hectareas <= 9) {
+    return {
+      texto: 'Mediano productor',
+      clase: 'mediano'
+    };
+  }
+
+  if (this.hectareas >= 10) {
+    return {
+      texto: 'Gran productor',
+      clase: 'grande'
+    };
+  }
+
+  return {
+    texto: '',
+    clase: ''
+  };
+}
+
 
 
 

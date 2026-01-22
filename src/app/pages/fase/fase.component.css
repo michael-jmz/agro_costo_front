@@ -1,315 +1,197 @@
-/* =========================
-   FASE CARD
-========================= */
-.fase-card {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+/* ===================== FASE CARD ===================== */
+.fase-card{
+  background:#ffffff;
+  border-radius:18px;
+  padding:18px;
+  box-shadow:0 18px 40px rgba(15,23,42,.12);
+  display:flex;
+  flex-direction:column;
+  gap:16px;
 }
 
-/* =========================
-   CABECERA
-========================= */
-.fase-header {
-  display: flex;
-  align-items: center;
-  gap: 18px;
+/* ===================== CABECERA ===================== */
+.fase-header{
+  display:flex;
+  align-items:center;
+  gap:16px;
 }
 
-.fase-titulo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.fase-imagen{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  object-fit:cover;
 }
 
-.fase-imagen {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  object-fit: cover;
+.fase-nombre{
+  font-size:18px;
+  font-weight:800;
 }
 
-.fase-nombre {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 700;
-  color: #020617;
+.subtitulo{
+  font-size:12px;
+  color:#64748b;
 }
 
-.subtitulo {
-  font-size: 12px;
-  color: #64748b;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+/* ===================== ACTIVIDADES ===================== */
+.actividades{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
 }
 
-/* =========================
-   ACTIVIDADES
-========================= */
-.actividades {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+/* ===================== ACTIVIDAD ===================== */
+.actividad{
+  background:#f9fbff;
+  border-radius:14px;
+  padding:14px;
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
 }
 
-/* =========================
-   ACTIVIDAD
-========================= */
-.actividad {
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 10px 14px;
-
-  display: grid;
-  grid-template-columns:
-    40px
-    26px
-    1fr
-    140px
-    32px;
-
-  align-items: center;
-  gap: 12px;
-
-  box-shadow:
-    0 4px 12px rgba(15, 23, 42, 0.06),
-    inset 0 0 0 1px #eef2f7;
+/* HEADER */
+.actividad-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:8px;
 }
 
-/* =========================
-   SWITCH
-========================= */
-.switch {
-  position: relative;
-  width: 40px;
-  height: 20px;
+.actividad-nombre{
+  font-size:14.5px;
+  font-weight:700;
+  color:#0f172a;
 }
 
-.switch input {
-  opacity: 0;
+/* INPUT NOMBRE NUEVA */
+.input-nombre{
+  width:100%;
+  padding:6px 8px;
+  font-size:14px;
+  font-weight:600;
+  border-radius:8px;
+  border:1px dashed #94a3b8;
+  background:#f8fafc;
 }
 
-.slider {
-  position: absolute;
-  inset: 0;
-  background: #cbd5e1;
-  border-radius: 999px;
-  transition: .25s;
+.input-nombre:focus{
+  outline:none;
+  border-color:#2563eb;
+  background:#ffffff;
+  box-shadow:0 0 0 3px rgba(37,99,235,.15);
 }
 
-.slider::before {
-  content: "";
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  left: 3px;
-  bottom: 3px;
-  background: #ffffff;
-  border-radius: 50%;
-  transition: .25s;
+/* BODY */
+.actividad-body{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:14px;
 }
 
-.switch input:checked + .slider {
-  background: linear-gradient(135deg, #2563eb, #1e40af);
+/* CONTROLES */
+.actividad-controls{
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
-.switch input:checked + .slider::before {
-  transform: translateX(20px);
+/* SWITCH */
+.switch{
+  width:38px;
+  height:20px;
+  position:relative;
+}
+.switch input{display:none;}
+.slider{
+  position:absolute;
+  inset:0;
+  background:#cbd5e1;
+  border-radius:999px;
+}
+.slider::before{
+  content:"";
+  width:14px;
+  height:14px;
+  background:#fff;
+  position:absolute;
+  top:3px;
+  left:3px;
+  border-radius:50%;
+  transition:.2s;
+}
+.switch input:checked + .slider{
+  background:#2563eb;
+}
+.switch input:checked + .slider::before{
+  transform:translateX(16px);
 }
 
-/* =========================
-   CHECK
-========================= */
-.check-realizada input {
-  width: 15px;
-  height: 15px;
-  accent-color: #16a34a;
+/* CHECK */
+.check-realizada input{
+  width:16px;
+  height:16px;
+  accent-color:#16a34a;
 }
 
-/* =========================
-   INFO
-========================= */
-.actividad-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
+/* BADGES */
+.tipo-costo{
+  font-size:10px;
+  padding:3px 8px;
+  border-radius:999px;
+  font-weight:700;
+}
+.tipo-costo.cf{background:#e0edff;color:#1d4ed8;}
+.tipo-costo.cv{background:#e7f8ec;color:#15803d;}
+
+.porcentaje{
+  font-size:11px;
+  color:#64748b;
 }
 
-.actividad-nombre {
-  font-size: 14px;
-  font-weight: 600;
-  color: #020617;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+/* COSTO */
+.actividad-costo{
+  text-align:right;
+}
+.input-costo{
+  width:76px;
+  padding:6px;
+  border-radius:10px;
+  border:1px solid #cbd5e1;
+  text-align:right;
+}
+.costo-total{
+  font-size:11px;
+  color:#2563eb;
+  opacity:.85;
 }
 
-.actividad-meta {
-  display: flex;
-  gap: 6px;
-  align-items: center;
+/* ELIMINAR */
+.eliminar{
+  width:30px;
+  height:30px;
+  border-radius:8px;
+  border:none;
+  background:#fee2e2;
+  color:#dc2626;
+  cursor:pointer;
 }
 
-.tipo-costo {
-  font-size: 10.5px;
-  padding: 2px 8px;
-  border-radius: 999px;
-  font-weight: 600;
+/* TOTALES */
+.totales{
+  text-align:right;
+  font-size:13px;
+}
+.costo-fase-extra strong{
+  color:#15803d;
 }
 
-.tipo-costo.cf {
-  background: #e0edff;
-  color: #1d4ed8;
-}
-
-.tipo-costo.cv {
-  background: #e7f8ec;
-  color: #15803d;
-}
-
-.porcentaje-actividad {
-  font-size: 11px;
-  color: #64748b;
-}
-
-/* =========================
-   INPUT NOMBRE
-========================= */
-.input-nombre {
-  width: 100%;
-  height: 32px;
-  padding: 4px 10px;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.input-nombre:focus {
-  outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.25);
-}
-
-/* =========================
-   COSTO
-========================= */
-.actividad-costo {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0;
-}
-
-.costo-input {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.input-costo {
-  width: 68px;
-  height: 30px;
-  padding: 4px 6px;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
-  font-size: 13px;
-  text-align: right;
-}
-
-.unidad {
-  font-size: 12px;
-  color: #475569;
-}
-
-.costo-total {
-  font-size: 10.5px;
-  color: #2563eb;
-  white-space: nowrap;
-}
-
-/* =========================
-   ELIMINAR
-========================= */
-.eliminar {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  background: transparent;
-  border: none;
-  color: #ef4444;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.eliminar:hover {
-  background: rgba(239, 68, 68, 0.12);
-}
-
-/* =========================
-   TOTALES
-========================= */
-.totales {
-  text-align: right;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.costo-fase,
-.costo-fase-extra {
-  font-size: 13.5px;
-}
-
-.costo-fase-extra strong {
-  color: #15803d;
-}
-
-/* =========================
-   BOTÓN
-========================= */
-.btn-agregar {
-  margin-top: 10px;
-  padding: 12px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #2563eb, #1e40af);
-  color: #ffffff;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-
-  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
-}
-
-.btn-agregar:hover {
-  filter: brightness(1.05);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 768px) {
-  .actividad {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .actividad-costo {
-    align-items: flex-start;
-  }
-
-  .totales {
-    text-align: left;
-  }
+/* BOTÓN */
+.btn-agregar{
+  padding:12px;
+  border-radius:14px;
+  background:#2563eb;
+  color:#fff;
+  font-weight:700;
+  border:none;
+  cursor:pointer;
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges  } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, QueryList, SimpleChanges, ViewChildren  } from '@angular/core';
 import { Actividad } from '../interfaces/actividad.interface';
 import { Fase } from '../interfaces/fase.interface';
 import { CommonModule } from '@angular/common';
@@ -15,6 +15,7 @@ export class FaseComponent {
   @Input() fase!: Fase;
   @Input() hectareas: number = 1;
   @Output() faseActualizada = new EventEmitter<Fase>();
+  @ViewChildren('inputNombre') inputs!: QueryList<ElementRef>;
 
   ngOnInit() {
     //Al entrar al componente ya calcula porcentajes
@@ -51,11 +52,15 @@ export class FaseComponent {
     activa: true,
     completada: false,
     esNueva: true
+
   };
 
   this.fase.actividades.push(nueva);
-   this.recalcularFase();     // 🔥 recalcula fase
+   this.recalcularFase();
   this.emitirCambio();
+  setTimeout(() => {
+    this.inputs.last?.nativeElement.focus();
+  });
 }
 
 
@@ -147,6 +152,17 @@ getImagenFase(nombre: string): string {
       return 'image.png';
   }
 }
+confirmarNombreActividad(actividad: any) {
+  if (!actividad.nombre || !actividad.nombre.trim()) {
+    return;
+  }
+
+  actividad.nombre = actividad.nombre.trim();
+  actividad.esNueva = false;
+
+  this.actualizarActividad();
+}
+
 
 
 
