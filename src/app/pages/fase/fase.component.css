@@ -195,3 +195,41 @@
   border:none;
   cursor:pointer;
 }
+/* ===============================
+   HOVER ACTIVIDAD – PREMIUM
+================================ */
+.actividad {
+  background: #ffffff;
+  border-radius: 14px;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eef2f7;
+}
+
+.actividad:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  border-color: #cfe3ff;
+}
+.actividad:hover {
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.12),
+    0 0 0 2px rgba(10, 94, 168, 0.08);
+}
+.actividad img {
+  transition: transform 0.25s ease;
+}
+
+.actividad:hover img {
+  transform: scale(1.05);
+}
+
+@media (hover: hover) {
+  .actividad:hover {
+    transform: translateY(-4px);
+  }
+}
+
